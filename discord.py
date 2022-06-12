@@ -1,9 +1,11 @@
-import discord
+from discord.ext import commands
+from os import getenv
+import traceback
 import asyncio
 import RSS
 import concurrent.futures
 
-TOKEN = 'ODkzMTc3MjgyMDQxMDg2MDIy.YVXqKg.oBD9_HJvQRJ89Gzb-j3jG957WLA'
+bot = commands.Bot(command_prefix='/')
 client = discord.Client()
 @tasks.loop(seconds=60)
 async def loop():
@@ -14,3 +16,6 @@ async def loop():
         #ニュースをチャットに送信
         for news in news_list:
             await channel.send(news)
+
+token = getenv('DISCORD_BOT_TOKEN')
+bot.run(token)
