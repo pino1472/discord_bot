@@ -7,23 +7,23 @@ import concurrent.futures
 
 bot = commands.Bot(command_prefix='/')
 
-# ƒƒbƒZ[ƒWóM‚É“®ì‚·‚éˆ—
+# ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡æ™‚ã«å‹•ä½œã™ã‚‹å‡¦ç†
 @bot.command()
 async def setup(message):
-    # ƒƒbƒZ[ƒW‘—MÒ‚ªBot‚¾‚Á‚½ê‡‚Í–³‹‚·‚é
+    # ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡è€…ãŒBotã ã£ãŸå ´åˆã¯ç„¡è¦–ã™ã‚‹
     if message.author.bot:
         return
-    # /setup‚Å”­Œ¾ƒ`ƒƒƒ“ƒlƒ‹‚ğƒZƒbƒg
+    # /setupã§ç™ºè¨€ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ã‚»ãƒƒãƒˆ
     NEWS_CHANNEL_ID = message.channel
     self.looper.start()
 
 @tasks.loop(seconds=60)
 async def looper():
     
-        channel = client.get_channel(NEWS_CHANNEL_ID) #”­Œ¾ƒ`ƒƒƒ“ƒlƒ‹‚ğw’è
-        news_list = rss_picker() #ƒjƒ…[ƒX‚ğæ“¾
+        channel = client.get_channel(NEWS_CHANNEL_ID) #ç™ºè¨€ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®š
+        news_list = rss_picker() #ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚’å–å¾—
 
-        #ƒjƒ…[ƒX‚ğƒ`ƒƒƒbƒg‚É‘—M
+        #ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚’ãƒãƒ£ãƒƒãƒˆã«é€ä¿¡
         for news in news_list:
             await channel.send(news)
 
