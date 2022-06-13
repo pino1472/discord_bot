@@ -1,9 +1,25 @@
+import discord
 from discord.ext import commands
 from os import getenv
 import traceback
 import asyncio
 import RSS
 import concurrent.futures
+
+@client.event
+async def on_ready():
+    # 起動したらターミナルにログイン通知が表示される
+    print('ログインしました')
+
+# メッセージ受信時に動作する処理
+@client.event
+async def on_message(message):
+    # メッセージ送信者がBotだった場合は無視する
+    if message.author.bot:
+        return
+    # /setupで発言チャンネルをセット
+    if message.content == '/setup':
+        NEWS_CHANNEL_ID = message.channel
 
 bot = commands.Bot(command_prefix='/')
 client = discord.Client()
