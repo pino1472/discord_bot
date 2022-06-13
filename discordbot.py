@@ -16,7 +16,6 @@ class MyCog(commands.Cog):
             return
         # /setupで発言チャンネルをセット
         NEWS_CHANNEL_ID = message.channel
-        loop.start()
 
     @tasks.loop(seconds=60)
     async def loop():
@@ -34,4 +33,6 @@ class MyCog(commands.Cog):
         await NEWS_CHANNEL_ID.send('開始しました。')
 
 token = getenv('DISCORD_BOT_TOKEN')
+
+loop.start()
 bot.run(token)
