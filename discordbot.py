@@ -6,6 +6,7 @@ import RSS
 import concurrent.futures
 
 bot = commands.Bot(command_prefix='/')
+NEWS_CHANNEL_ID = ''
 
 # メッセージ受信時に動作する処理
 @bot.command()
