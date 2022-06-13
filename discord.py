@@ -1,30 +1,29 @@
-import discord
-from discord.ext import commands
+from discord.ext import tasks,commands
 from os import getenv
 import traceback
 import asyncio
 import RSS
 import concurrent.futures
 
-@client.event
+bot = commands.Bot(command_prefix='/')
+
+@looper.before_loop
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
-    print('ログインしました')
+    print('開始します。')
 
 # メッセージ受信時に動作する処理
-@client.event
-async def on_message(message):
+@bot.command()
+async def setup(message):
     # メッセージ送信者がBotだった場合は無視する
     if message.author.bot:
         return
     # /setupで発言チャンネルをセット
-    if message.content == '/setup':
-        NEWS_CHANNEL_ID = message.channel
+    NEWS_CHANNEL_ID = message.channel
+    self.looper.start()
 
-bot = commands.Bot(command_prefix='/')
-client = discord.Client()
 @tasks.loop(seconds=60)
-async def loop():
+async def looper():
     
         channel = client.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
         news_list = rss_picker() #ニュースを取得
