@@ -10,7 +10,7 @@ bot = commands.Bot(command_prefix='/')
 @looper.before_loop
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
-    print('開始します。')
+    await NEWS_CHANNEL_ID.send('開始します。')
 
 # メッセージ受信時に動作する処理
 @bot.command()
