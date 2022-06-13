@@ -16,10 +16,10 @@ class MyCog(commands.Cog):
             return
         # /setupで発言チャンネルをセット
         NEWS_CHANNEL_ID = message.channel
-        looper.start()
+        loop.start()
 
     @tasks.loop(seconds=60)
-    async def looper():
+    async def loop():
     
             channel = bot.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
             news_list = rss_picker() #ニュースを取得
