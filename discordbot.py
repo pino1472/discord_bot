@@ -28,7 +28,7 @@ class MyCog(commands.Cog):
             for news in news_list:
                 await channel.send(news)
 
-    @looper.before_loop
+    @loop.before_loop
     async def on_ready():
         # 起動したらログイン通知が表示される
         await NEWS_CHANNEL_ID.send('開始しました。')
