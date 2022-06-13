@@ -42,7 +42,7 @@ def rss_picker():
            #最新のニュースURLに置き換える
            try:
                with open(log_path, mode='w') as f:
-               f.write(d.entries[0].link)
+                   f.write(d.entries[0].link)
 
                repo.git.add('log.txt')
                repo.git.commit('log.txt', message='update', author='pino1472')
