@@ -7,6 +7,11 @@ import concurrent.futures
 
 bot = commands.Bot(command_prefix='/')
 
+@looper.before_loop
+async def on_ready():
+    # 起動したらログイン通知が表示される
+    await NEWS_CHANNEL_ID.send(news)
+
 # メッセージ受信時に動作する処理
 @bot.command()
 async def setup(message):
@@ -15,7 +20,7 @@ async def setup(message):
         return
     # /setupで発言チャンネルをセット
     NEWS_CHANNEL_ID = message.channel
-    self.looper.start()
+    looper.start()
 
 @tasks.loop(seconds=60)
 async def looper():
