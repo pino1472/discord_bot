@@ -26,7 +26,7 @@ async def on_message(message):
 async def loop():
     
     channel = client.get_channel(tempID) #発言チャンネルを指定
-    news_list = RSS.rss_picker #ニュースを取得
+    news_list = RSS.rss_picker() #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:

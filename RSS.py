@@ -11,9 +11,6 @@ log_path = 'data/log.txt' #logファイルのパス
 RSS_URL = 'https://www.happyou.info/fs/gen.php?u=-1032701763&p=139401332' #AUTOMATONのRSS-URL
 
 def rss_picker():
-
-    no_news_flg = 1 #最新ニュース有無のフラグ
-
     #受け渡しニュースデータ用
     news_list = []
 
@@ -32,13 +29,12 @@ def rss_picker():
 
        #前回の最新ニュースに当たれば処理終了 (それ以降は古いニュースの為)
        if old_news_url == entry.link:
-           news_list.append(entry.link)
-           no_news_flg = 0
            break
        else:
            #ニュースが無いデータを格納
-           news_list.append('最新のニュースはありません')
-    if no_news_flg == 0:
+           news_list.append(entry.link)
+    #前回の最新ニュースが先頭ではない場合
+    if old_news_url != d.entries[0].link:
            #最新のニュースURLに置き換える
            try:
                with open(log_path, mode='w') as f:
