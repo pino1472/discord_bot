@@ -11,14 +11,15 @@ bot = commands.Bot(command_prefix='/')
 NEWS_CHANNEL_ID = 0
 
 # メッセージ受信時に動作する処理
-@bot.command()
-async def setup(ctx):
+@client.event
+async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
-    if ctx.author.bot:
+    if message.author.bot:
             return
     # /setupで発言チャンネルをセット
-    NEWS_CHANNEL_ID = ctx.channel.id
-    await ctx.send('チャンネルIDをセット' + str(ctx.channel.id))
+    if message.content == '/setup':
+        NEWS_CHANNEL_ID = message.channel.id
+        await message.channel.send('チャンネルIDをセット' + str(message.channel.id))
 
 @tasks.loop(seconds=10)
 async def loop():
@@ -40,4 +41,3 @@ token = getenv('DISCORD_BOT_TOKEN')
 
 loop.start()
 client.run(token)
-bot.run(token)
