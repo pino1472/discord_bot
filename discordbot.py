@@ -14,8 +14,8 @@ async def setup(ctx):
     if ctx.author.bot:
             return
     # /setupで発言チャンネルをセット
-    NEWS_CHANNEL_ID = ctx.channel
-    await ctx.send('チャンネルIDをセット' + ctx.channel)
+    NEWS_CHANNEL_ID = ctx.channel.id
+    await ctx.send('チャンネルIDをセット' + ctx.channel.id)
 
 @tasks.loop(seconds=60)
 async def loop():
