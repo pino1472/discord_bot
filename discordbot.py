@@ -9,6 +9,7 @@ import concurrent.futures
 client = discord.Client()
 bot = commands.Bot(command_prefix='/')
 NEWS_CHANNEL_ID = 0
+tempID = 861810568733392939
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -34,7 +35,7 @@ async def loop():
 @loop.before_loop
 async def before_loop():
     # 起動したらログイン通知が表示される
-    channel = client.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
+    channel = client.get_channel(tempID) #発言チャンネルを指定
     print(NEWS_CHANNEL_ID)
     await channel.send('開始しました。' + str(NEWS_CHANNEL_ID))
 
