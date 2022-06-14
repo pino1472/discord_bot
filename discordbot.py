@@ -6,6 +6,7 @@ import RSS
 import concurrent.futures
 
 bot = commands.Bot(command_prefix='/')
+NEWS_CHANNEL_ID = 0
 
 # メッセージ受信時に動作する処理
 @bot.command()
@@ -17,7 +18,7 @@ async def setup(ctx):
     NEWS_CHANNEL_ID = ctx.channel.id
     await ctx.send('チャンネルIDをセット' + str(ctx.channel.id))
 
-@tasks.loop(seconds=60)
+@tasks.loop(seconds=10)
 async def loop():
     
     channel = bot.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
