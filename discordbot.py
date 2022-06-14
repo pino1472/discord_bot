@@ -19,7 +19,7 @@ async def on_message(message):
             return
     # /setupで発言チャンネルをセット
     if message.content == '/setup':
-        NEWS_CHANNEL_ID = message.channel.id
+        #NEWS_CHANNEL_ID = message.channel.id
         await message.channel.send('チャンネルIDをセット' + str(message.channel.id))
 
 @tasks.loop(seconds=10)
@@ -36,8 +36,7 @@ async def loop():
 async def before_loop():
     # 起動したらログイン通知が表示される
     channel = client.get_channel(tempID) #発言チャンネルを指定
-    print(NEWS_CHANNEL_ID)
-    await channel.send('開始しました。' + str(NEWS_CHANNEL_ID))
+    await channel.send('開始しました。')
 
 token = getenv('DISCORD_BOT_TOKEN')
 
