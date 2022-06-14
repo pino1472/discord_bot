@@ -40,3 +40,4 @@ token = getenv('DISCORD_BOT_TOKEN')
 
 loop.start()
 client.run(token)
+bot.run(token)
