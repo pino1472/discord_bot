@@ -29,7 +29,7 @@ async def loop():
         await channel.send(news)
 
 @loop.before_loop
-async def on_ready():
+async def before_loop():
     # 起動したらログイン通知が表示される
     channel = bot.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
     await channel.send('開始しました。')
