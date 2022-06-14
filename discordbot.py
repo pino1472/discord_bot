@@ -39,4 +39,4 @@ async def before_loop():
 token = getenv('DISCORD_BOT_TOKEN')
 
 loop.start()
-bot.run(token)
+client.run(token)
