@@ -35,6 +35,7 @@ async def loop():
 async def before_loop():
     # 起動したらログイン通知が表示される
     channel = client.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
+    print(NEWS_CHANNEL_ID)
     await channel.send('開始しました。' + str(NEWS_CHANNEL_ID))
 
 token = getenv('DISCORD_BOT_TOKEN')
