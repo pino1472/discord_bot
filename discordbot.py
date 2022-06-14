@@ -14,8 +14,8 @@ async def setup(ctx):
     if ctx.author.bot:
             return
     # /setupで発言チャンネルをセット
-    NEWS_CHANNEL_ID = ctx
-    await ctx.send('チャンネルIDをセット' + ctx)
+    NEWS_CHANNEL_ID = ctx.channel
+    await ctx.send('チャンネルIDをセット' + ctx.channel)
 
 @tasks.loop(seconds=60)
 async def loop():
@@ -30,7 +30,8 @@ async def loop():
 @loop.before_loop
 async def on_ready():
     # 起動したらログイン通知が表示される
-    await NEWS_CHANNEL_ID.send('開始しました。')
+    channel = bot.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
+    await channel.send('開始しました。')
 
 token = getenv('DISCORD_BOT_TOKEN')
 
