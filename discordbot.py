@@ -19,24 +19,18 @@ async def on_message(message):
             return
     # /setupで発言チャンネルをセット
     if message.content == '/setup':
-        #NEWS_CHANNEL_ID = message.channel.id
+        NEWS_CHANNEL_ID = message.channel.id
         await message.channel.send('チャンネルIDをセット' + str(message.channel.id))
 
 @tasks.loop(seconds=10)
 async def loop():
     
-    channel = client.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
+    channel = client.get_channel(tempID) #発言チャンネルを指定
     news_list = rss_picker() #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:
         await channel.send(news)
-
-@loop.before_loop
-async def before_loop():
-    # 起動したらログイン通知が表示される
-    channel = client.get_channel(tempID) #発言チャンネルを指定
-    await channel.send('開始しました。')
 
 token = getenv('DISCORD_BOT_TOKEN')
 
