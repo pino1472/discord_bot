@@ -7,30 +7,30 @@ import concurrent.futures
 
 bot = commands.Bot(command_prefix='/')
 
-class MyCog(commands.Cog):
-    # メッセージ受信時に動作する処理
-    @bot.command()
-    async def setup(message):
-        # メッセージ送信者がBotだった場合は無視する
-        if message.author.bot:
+# メッセージ受信時に動作する処理
+@bot.command()
+async def setup(ctx):
+    # メッセージ送信者がBotだった場合は無視する
+    if ctx.author.bot:
             return
-        # /setupで発言チャンネルをセット
-        NEWS_CHANNEL_ID = message.channel
+    # /setupで発言チャンネルをセット
+    NEWS_CHANNEL_ID = ctx
+    await ctx.send('チャンネルIDをセット' + ctx)
 
-    @tasks.loop(seconds=60)
-    async def loop():
+@tasks.loop(seconds=60)
+async def loop():
     
-            channel = bot.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
-            news_list = rss_picker() #ニュースを取得
+    channel = bot.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
+    news_list = rss_picker() #ニュースを取得
 
-            #ニュースをチャットに送信
-            for news in news_list:
-                await channel.send(news)
+    #ニュースをチャットに送信
+    for news in news_list:
+        await channel.send(news)
 
-    @loop.before_loop
-    async def on_ready():
-        # 起動したらログイン通知が表示される
-        await NEWS_CHANNEL_ID.send('開始しました。')
+@loop.before_loop
+async def on_ready():
+    # 起動したらログイン通知が表示される
+    await NEWS_CHANNEL_ID.send('開始しました。')
 
 token = getenv('DISCORD_BOT_TOKEN')
 
