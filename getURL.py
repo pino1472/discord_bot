@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request as urreq
 import re
 
-def url_picker(*last_msg):
+def url_picker(*msg):
 
     news_list = []
 
@@ -20,6 +20,6 @@ def url_picker(*last_msg):
         entrys = temps + '\n' + 'https://jp.finalfantasyxiv.com' + str(tempSplit[0])
         news_list.append(entrys)
 
-    news_diff = list(set(news_list) - set(last_msg.content))
+    news_diff = list(set(news_list) - set(msg))
 
     return news_diff

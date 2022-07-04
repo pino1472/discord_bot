@@ -9,7 +9,7 @@ import concurrent.futures
 client = discord.Client()
 bot = commands.Bot(command_prefix='/')
 
-@tasks.loop(seconds=60)
+@tasks.loop(seconds=30)
 async def loop():
     channel_id = getenv('DISCORD_BOT_CHANNEL')
     await client.wait_until_ready()
@@ -17,8 +17,10 @@ async def loop():
     channel = client.get_channel(int(channel_id)) #発言チャンネルを指定
     
     message = await channel.history(limit=25).flatten()
+    for msg in message:
+        news_list.append(msg.content)
 
-    news_list = getURL.url_picker(*message) #ニュースを取得
+    news_list = getURL.url_picker(*news_list) #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:
