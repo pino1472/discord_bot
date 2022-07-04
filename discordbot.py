@@ -14,12 +14,9 @@ async def loop():
     channel_id = getenv('DISCORD_BOT_CHANNEL')
     await client.wait_until_ready()
 
-    channel = client.get_channel(channel_id) #発言チャンネルを指定
+    channel = client.get_channel(int(channel_id)) #発言チャンネルを指定
     
-    if isinstance(channel, discord.TextChannel):
-        message = await channel.history(limit=20).flatten()
-    else:
-        await channel.send('できてない')
+    message = await channel.history(limit=20).flatten()
 
     news_list = getURL.url_picker(*message) #ニュースを取得
 
