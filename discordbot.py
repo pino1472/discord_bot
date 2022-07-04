@@ -10,7 +10,6 @@ import concurrent.futures
 client = discord.Client()
 bot = commands.Bot(command_prefix='/')
 NEWS_CHANNEL_ID = 0
-tempID = 861810568733392939
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -19,9 +18,11 @@ async def on_message(message):
     if message.author.bot:
             return
     # /setupで発言チャンネルをセット
+    if message.content == '/test':
+        await message.channel.send('現在のチャンネルIDは' + str(NEWS_CHANNEL_ID) + 'です。')
     if message.content == '/setup':
         NEWS_CHANNEL_ID = message.channel.id
-        await message.channel.send('チャンネルIDをセット' + str(message.channel.id))
+        await message.channel.send('チャンネルID：' + str(NEWS_CHANNEL_ID) + 'にセットしました。')
     if message.content == '/reset':
         NEWS_CHANNEL_ID = 0
         await message.channel.send('リセットしました。')
