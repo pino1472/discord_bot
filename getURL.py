@@ -14,7 +14,7 @@ def url_picker(*last_msg):
     pick_all = soup.select('p.news__list--title')
 
     for entry in pick_all:
-        temp = str(entry).replace('</a></p>','').replace('">',' ').replace('<p class="news__list--title"><a href="','')
+        temp = str(entry).replace('<p class="news__list--title"><a href="','').replace('">',' ').replace('</a></p>','')
         tempSplit = str(temp).split()
         temps = '**' + str(tempSplit[1]) +'**'
         entrys = temps + '\n' + str(tempSplit[0])
