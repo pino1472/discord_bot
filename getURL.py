@@ -13,13 +13,13 @@ def url_picker(*last_msg):
 
     pick_all = soup.select('p.news__list--title')
 
-    news_diff = list(set(pick_all) - set(last_msg))
-
-    for entry in news_diff:
-
-        str(entry).replace('</a></p>','').replace('">',' ').replace('<p class="news__list--title"><a href="','')
-        entryReg = str(entry).split()
-        entryRegs = '**' + str(entryReg[1]) +'**'
-        entrys = entryRegs + '\n' + str(entryReg[0])
+    for entry in pick_all:
+        temp = str(entry).replace('</a></p>','').replace('">',' ').replace('<p class="news__list--title"><a href="','')
+        tempSplit = str(temp).split()
+        temps = '**' + str(tempSplit[1]) +'**'
+        entrys = temps + '\n' + str(tempSplit[0])
         news_list.append(entrys)
-    return news_list
+
+    news_diff = list(set(news_list) - set(last_msg))
+
+    return news_diff
