@@ -12,9 +12,10 @@ bot = commands.Bot(command_prefix='/')
 
 @tasks.loop(seconds=10)
 async def loop():
+    channel_id = getenv('DISCORD_BOT_CHANNEL')
     await client.wait_until_ready()
 
-    channel = client.get_channel(getenv('DISCORD_BOT_CHANNEL')) #発言チャンネルを指定
+    channel = client.get_channel(channel_id) #発言チャンネルを指定
 
     last_msg = []
     # 取得したチャンネルの最後のメッセージを取得する
