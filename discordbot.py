@@ -23,16 +23,21 @@ async def on_message(message):
         NEWS_CHANNEL_ID = message.channel.id
         await message.channel.send('チャンネルIDをセット' + str(message.channel.id))
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=60)
 async def loop():
     await client.wait_until_ready()
 
     channel = client.get_channel(tempID) #発言チャンネルを指定
-    news_list = getURL.url_picker() #ニュースを取得
+
+    
+    # 取得したチャンネルの最後のメッセージを取得する
+    last_msg = await channel.fetch_message(channel.last_message_id)
+
+    news_list = getURL.url_picker(last_msg) #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:
-        await channel.send("います")
+        await channel.send(news)
 
 token = getenv('DISCORD_BOT_TOKEN')
 

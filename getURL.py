@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request as urreq
 
-def url_picker():
+def url_picker(last_msg):
 
     #受け渡しニュースデータ用
     news_list = []
@@ -15,10 +15,10 @@ def url_picker():
     pick_all = soup.select('p.news__list--title')
 
     for entry in pick_all:
-        #前回の最新ニュースに当たれば処理終了 (それ以降は古いニュースの為)
-       #if old_news_url == entry.link:
-           #break
-       #else:
+       #前回の最新ニュースに当たれば処理終了 (それ以降は古いニュースの為)
+       if last_msg == entry:
+           break
+       else:
            #ニュースが無いデータを格納
            news_list.append(entry)
     return news_list
