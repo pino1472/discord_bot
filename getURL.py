@@ -17,7 +17,7 @@ def url_picker(*last_msg):
 
     for entry in news_diff:
 
-        str(entry).replace('<p class="news__list--title"><a href="','').replace('">',' ').replace('</a></p>','')
+        str(entry).replace('</a></p>','').replace('">',' ').replace('<p class="news__list--title"><a href="','')
         entryReg = str(entry).split()
         entryRegs = '**' + str(entryReg[1]) +'**'
         entrys = entryRegs + '\n' + str(entryReg[0])
