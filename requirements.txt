@@ -1,5 +1,5 @@
 discord.py[voice]>=1.7.3
 feedparser
 GitPython
-BeautifulSoup
+beautifulsoup4
 urllib
