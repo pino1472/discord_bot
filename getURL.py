@@ -13,7 +13,7 @@ def url_picker(*last_msg):
 
     pick_all = soup.select('p.news__list--title')
 
-    news_diff = pick_all - last_msg
+    news_diff = list(set(pick_all) - set(last_msg))
 
     for entry in news_diff:
 
