@@ -3,7 +3,6 @@ from discord.ext import tasks,commands
 from os import getenv
 import traceback
 import asyncio
-import RSS
 import getURL
 import concurrent.futures
 
