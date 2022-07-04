@@ -15,7 +15,7 @@ def url_picker(*last_msg):
 
     for entry in pick_all:
         temp = str(entry).replace('<p class="news__list--title"><a href="','').replace('">',' ').replace('</a></p>','')
-        tempSplit = str(temp).split()
+        tempSplit = str(temp).split(' ',1)
         temps = '**' + str(tempSplit[1]) +'**'
         entrys = temps + '\n' + str(tempSplit[0])
         news_list.append(entrys)

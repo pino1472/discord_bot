@@ -16,7 +16,7 @@ async def loop():
 
     channel = client.get_channel(int(channel_id)) #発言チャンネルを指定
     
-    message = await channel.history(limit=20).flatten()
+    message = await channel.history(limit=25).flatten()
 
     news_list = getURL.url_picker(*message) #ニュースを取得
 
