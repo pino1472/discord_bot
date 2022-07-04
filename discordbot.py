@@ -21,8 +21,8 @@ async def loop():
     news_list = getURL.url_picker(*message) #ニュースを取得
 
     #ニュースをチャットに送信
-    for news in message:
-        await channel.send(news.content + 'テスト')
+    for news in news_list:
+        await channel.send(news)
 
 token = getenv('DISCORD_BOT_TOKEN')
 

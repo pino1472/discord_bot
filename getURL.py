@@ -20,6 +20,6 @@ def url_picker(*last_msg):
         entrys = temps + '\n' + 'https://jp.finalfantasyxiv.com' + str(tempSplit[0])
         news_list.append(entrys)
 
-    news_diff = list(set(news_list) - set(last_msg))
+    news_diff = list(set(news_list) - set(last_msg.content))
 
     return news_diff
