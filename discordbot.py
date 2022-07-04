@@ -11,6 +11,8 @@ bot = commands.Bot(command_prefix='/')
 
 @tasks.loop(seconds=30)
 async def loop():
+    temp =[]
+
     channel_id = getenv('DISCORD_BOT_CHANNEL')
     await client.wait_until_ready()
 
@@ -18,9 +20,9 @@ async def loop():
     
     message = await channel.history(limit=25).flatten()
     for msg in message:
-        news_list.append(msg.content)
+        temp.append(msg.content)
 
-    news_list = getURL.url_picker(*news_list) #ニュースを取得
+    news_list = getURL.url_picker(*temp) #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:
