@@ -9,7 +9,7 @@ import concurrent.futures
 client = discord.Client()
 bot = commands.Bot(command_prefix='/')
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=60)
 async def loop():
     channel_id = getenv('DISCORD_BOT_CHANNEL')
     await client.wait_until_ready()
