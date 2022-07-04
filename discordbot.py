@@ -19,8 +19,8 @@ async def loop():
 
     last_msg = []
     # 取得したチャンネルの最後のメッセージを取得する
-    async for msg in channel.history(limit=20):
-        last_msg.append(msg)
+    async for message in channel.history(limit=20):
+        last_msg.append(message)
 
     news_list = getURL.url_picker(*last_msg) #ニュースを取得
 
