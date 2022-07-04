@@ -22,18 +22,24 @@ async def on_message(message):
     if message.content == '/setup':
         NEWS_CHANNEL_ID = message.channel.id
         await message.channel.send('チャンネルIDをセット' + str(message.channel.id))
+    if message.content == '/reset':
+        NEWS_CHANNEL_ID = 0
+        await message.channel.send('リセットしました。')
 
-@tasks.loop(seconds=60)
+@tasks.loop(seconds=10)
 async def loop():
     await client.wait_until_ready()
 
-    channel = client.get_channel(tempID) #発言チャンネルを指定
+    if NEWS_CHANNEL_ID == 0:
+        return
+    channel = client.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
 
-    
+    last_msg = []
     # 取得したチャンネルの最後のメッセージを取得する
-    last_msg = await channel.fetch_message(channel.last_message_id)
+    async for msg in channel.history(limit=20):
+        last_msg.append(msg)
 
-    news_list = getURL.url_picker(last_msg) #ニュースを取得
+    news_list = getURL.url_picker(*last_msg) #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:
