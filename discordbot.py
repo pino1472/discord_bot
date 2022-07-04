@@ -17,12 +17,9 @@ async def loop():
 
     channel = client.get_channel(channel_id) #発言チャンネルを指定
 
-    last_msg = []
-    # 取得したチャンネルの最後のメッセージを取得する
-    async for message in channel.history(limit=20):
-        last_msg.append(message)
+    message = [message async for message in channel.history(limit=20)]
 
-    news_list = getURL.url_picker(*last_msg) #ニュースを取得
+    news_list = getURL.url_picker(*message) #ニュースを取得
 
     #ニュースをチャットに送信
     for news in news_list:
