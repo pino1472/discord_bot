@@ -22,7 +22,7 @@ async def loop():
 
     #ニュースをチャットに送信
     for news in message:
-        await channel.send(news + 'テスト')
+        await channel.send(news.content + 'テスト')
 
 token = getenv('DISCORD_BOT_TOKEN')
 
