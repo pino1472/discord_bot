@@ -19,7 +19,7 @@ async def loop():
     if isinstance(channel, discord.TextChannel):
         message = await channel.history(limit=20).flatten()
     else:
-        await channel.send(type(channel))
+        await channel.send('できてない')
 
     news_list = getURL.url_picker(*message) #ニュースを取得
 
