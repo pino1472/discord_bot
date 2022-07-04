@@ -9,31 +9,12 @@ import concurrent.futures
 
 client = discord.Client()
 bot = commands.Bot(command_prefix='/')
-NEWS_CHANNEL_ID = 0
-
-# メッセージ受信時に動作する処理
-@client.event
-async def on_message(message):
-    # メッセージ送信者がBotだった場合は無視する
-    if message.author.bot:
-            return
-    # /setupで発言チャンネルをセット
-    if message.content == '/test':
-        await message.channel.send('現在のチャンネルIDは' + str(NEWS_CHANNEL_ID) + 'です。')
-    if message.content == '/setup':
-        NEWS_CHANNEL_ID = message.channel.id
-        await message.channel.send('チャンネルID：' + str(NEWS_CHANNEL_ID) + 'にセットしました。')
-    if message.content == '/reset':
-        NEWS_CHANNEL_ID = 0
-        await message.channel.send('リセットしました。')
 
 @tasks.loop(seconds=10)
 async def loop():
     await client.wait_until_ready()
 
-    if NEWS_CHANNEL_ID == 0:
-        return
-    channel = client.get_channel(NEWS_CHANNEL_ID) #発言チャンネルを指定
+    channel = client.get_channel(getenv('DISCORD_BOT_CHANNEL')) #発言チャンネルを指定
 
     last_msg = []
     # 取得したチャンネルの最後のメッセージを取得する
