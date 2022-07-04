@@ -25,9 +25,9 @@ async def on_message(message):
 
 @tasks.loop(seconds=10)
 async def loop():
-    
-    channel = client.get_channel(tempID) #発言チャンネルを指定
     await client.wait_until_ready()
+
+    channel = client.get_channel(tempID) #発言チャンネルを指定
     news_list = getURL.url_picker() #ニュースを取得
 
     #ニュースをチャットに送信
