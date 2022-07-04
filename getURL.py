@@ -17,9 +17,9 @@ def url_picker(*last_msg):
 
     for entry in news_diff:
 
-        entry.replace('<p class="news__list--title"><a href="','').replace('">','').replace('</a></p>','')
-        entryReg = re.split('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)',entry)
+        str(entry).replace('<p class="news__list--title"><a href="','').replace('">','').replace('</a></p>','')
+        entryReg = re.split('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)',str(entry))
         entryReg[1] = '**' + entryReg[1] +'**'
-        entry = entryReg[1] + '\n' + entryReg[0]
-        news_list.append(entry)
+        entrys = entryReg[1] + '\n' + entryReg[0]
+        news_list.append(entrys)
     return news_list
