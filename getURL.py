@@ -19,7 +19,7 @@ def url_picker(*last_msg):
 
         str(entry).replace('<p class="news__list--title"><a href="','').replace('">',' ').replace('</a></p>','')
         entryReg = str(entry).split()
-        entryRegs = '**' + entryReg[1] +'**'
-        entrys = entryRegs + '\n' + entryReg[0]
+        entryRegs = '**' + str(entryReg[1]) +'**'
+        entrys = entryRegs + '\n' + str(entryReg[0])
         news_list.append(entrys)
     return news_list
