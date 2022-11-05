@@ -9,7 +9,7 @@ def url_picker(*msg):
     url = "https://jp.finalfantasyxiv.com/lodestone/topics/"
     ans = urreq.urlopen(url)
 
-    soup = BeautifulSoup(ans,'html.parser', from_encoding="utf-8")
+    soup = BeautifulSoup(ans,'html.parser', from_encoding='utf-8')
 
     pick_all = soup.select('p.news__list--title')
 
