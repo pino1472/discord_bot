@@ -6,7 +6,7 @@ import asyncio
 import getURL
 import concurrent.futures
 
-client = discord.Client()
+client = discord.Client(intents=discord.Intents.all())
 bot = commands.Bot(command_prefix='/')
 
 @tasks.loop(seconds=30)
